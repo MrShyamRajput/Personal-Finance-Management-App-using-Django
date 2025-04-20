@@ -1,0 +1,33 @@
+<!-- set_budget_form.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Budget</title>
+    <link rel="stylesheet" href="{% static 'set_budget.css'%}">
+</head>
+<body>
+    <div class="form-container">
+        <button 
+    onclick="window.location.href='/home'" 
+    style="position: absolute; top: 20px; right: 20px; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+    Home
+</button>
+        <h2>Set New Budget</h2>
+        <form action="" method="POST">{% csrf_token %}
+            <div>
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" placeholder="Enter Your Username">
+            </div>
+            <div>
+                <label for="budget">New Budget:</label>
+            <input type="number" id="budget" name="budget" placeholder="Enter your new budget" required>
+            </div>
+
+            <button type="submit">Update Budget</button>
+        </form>
+    </div>
+</body>
+</html>

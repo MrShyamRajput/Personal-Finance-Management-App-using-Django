@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Transaction Records</title>
+    <link rel="stylesheet" href="{%static 'view_tran.css'%}"> </head>
+<body>
+
+<div class="container">
+    <button 
+    onclick="window.location.href='/home'" 
+    style="position: absolute; top: 20px; right: 20px; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+    Home
+</button>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div>
+            <label for="username">Username</label>
+            <input type="text" name="username" value="varad"  id="username" placeholder="Enter Your Username">
+        </div>
+        <button type="submit">Fetch</button>
+    </form>
+
+    <div class="records-container">
+        <h2>Transaction Records</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Amount</th>
+                    <th>Category</th>
+                    <th>Type</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                <tr>
+                    <td>{{item.username}}</td>
+                    <td>{{item.amount}} </td>
+                    <td>{{item.category}} </td>
+                    <td>{{item.type}} </td>
+                    <td>{{item.date}} </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!-- transaction_form.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Form</title>
+    <link rel="stylesheet" href="{% static 'add_tran.css' %}">
+</head>
+<body>
+    <div class="form-container">
+        <button 
+    onclick="window.location.href='/home'" 
+    style="position: absolute; top: 20px; right: 20px; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+    Home
+</button>
+        <h2>Transaction Form</h2>
+        <form action="/add_transaction" method="POST">{% csrf_token %}
+
+            <label for="amount">Username:</label>
+            <input type="text" id="amount" name="username" placeholder="Enter the amount"  required>
+
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" placeholder="Enter the amount"  required>
+
+            <label for="category">Category:</label>
+            <input type="text" id="category" name="category" placeholder="Enter category" required>
+
+            <label for="type">Transaction Type:</label>
+            <select id="type" name="type" required>
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+            </select>
+
+            <label for="date">Date:</label>
+            <input type="datetime-local" id="date" name="date" required>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

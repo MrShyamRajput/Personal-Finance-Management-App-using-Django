@@ -1,0 +1,25 @@
+<!-- transaction_menu.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Menu</title>
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+</head>
+<body>
+    <div class="menu-container">
+        <h2>🔹 Main Menu 🔹</h2>
+        <ul>
+            
+            <li><a href="add_transaction">1. Add Transaction</a></li>
+            <li><a href="view_transaction">2. View Transactions</a></li>
+            <li><a href="set_budget">4. Set Budget</a></li>
+            <li><a href="check_budget">5. Check Budget Status</a></li>
+            <li><a href="financial_reports">6. Generate Financial Report</a></li>
+            <li><a href="{% url 'login' %}">Logout</a></li>
+        </ul>
+    </div>
+</body>
+</html>

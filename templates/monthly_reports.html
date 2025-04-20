@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Transaction Filter</title>
+    <link rel="stylesheet" href="{% static 'reports.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <button 
+    onclick="window.location.href='/home'" 
+    style="position: absolute; top: 20px; right: 20px; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+    Home
+</button>
+
+    <!-- Form Section -->
+    <form method="post" class="filter-form">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text"  name="username" value="varad" placeholder="Enter username">
+        </div>
+        <button type="submit">Filter</button>
+    </form>
+    
+    <div style="max-width: 400px; margin: 30px auto; padding: 20px; border: 2px solid #ccc; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); font-family: Arial, sans-serif;">
+        <h2 style="text-align:center; color: #333;">Financial Report</h2>
+        <p><strong>Total Income:</strong> ₹{{ total_income|default:"0.00" }}</p>
+<p><strong>Total Expense:</strong> ₹{{ total_expense|default:"0.00" }}</p>
+
+        <hr style="margin: 15px 0;">
+        <p><strong>Savings:</strong> ₹{{ saving|default:"0.00" }}</p>
+    </div>
+    
+    {% if total_expense > total_income %}
+    <p style="color: red; font-weight: bold;">
+        ⚠️ Your expenses are higher than your income.<br>
+        Try minimizing unnecessary spending to increase your savings. 💡
+    </p>
+{% endif %}
+    
+
+    <!-- Table Section -->
+    <div class="records">
+        <h2>Transaction Records</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Amount</th>
+                    <th>Category</th>
+                    <th>Type</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in data %}
+                <tr>
+                    <td>{{ record.username }}</td>
+                    <td>{{ record.amount }}</td>
+                    <td>{{ record.category }}</td>
+                    <td>{{ record.type }}</td>
+                    <td>{{ record.date }}</td>
+                </tr>
+                {% empty %}
+                <tr><td colspan="5">No records found.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
+</html>

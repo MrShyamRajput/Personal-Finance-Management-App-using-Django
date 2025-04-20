@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" action="{% url 'update_transaction' %}">
+        {% csrf_token %}
+        <input type="text" name="amount" value="{{ item.amount }}" required>
+        <input type="text" name="category" value="{{ item.category }}" required>
+        <input type="text" name="type" value="{{ item.type }}" required>
+        <input type="text" name="date" value="{{ item.date }}" required>
+        <button type="submit" style="padding: 5px 10px; background-color: #ffc107; border: none; color: white; border-radius: 4px;">Update</button>
+    </form>
+</body>
+</html>
